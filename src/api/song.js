@@ -20,3 +20,24 @@ export function getLyric (mid) {
     return Promise.resolve(res.data)
   })
 }
+
+export function getMusic (mid) {
+  const url = '/api/music'
+  const data = Object.assign({}, commonParams, {
+    songmid: mid,
+    filename: 'c100' + mid + '.m4a',
+    guid: 1819638027,
+    platform: 'yqq',
+    loginUin: 0,
+    hostUin: 0,
+    uin: 0,
+    cid: 205361747,
+    format: 'json'
+  })
+
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
+}

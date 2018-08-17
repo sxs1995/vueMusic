@@ -10,7 +10,7 @@
             <li v-for="(group, index) in data" :key="index" class="list-group" ref="listGroup">
                 <h2 class="list-group-title">{{group.title}}</h2>
                 <ul>
-                    <li v-for="(item, index) in group.items" :key="index" class="list-group-item">
+                    <li @click="selectItem(item)" v-for="(item, index) in group.items" :key="index" class="list-group-item">
                         <img :src="item.avatar" alt="" class="avatar">
                         <span class="name">{{item.name}}</span>
                     </li>
@@ -83,6 +83,9 @@ export default {
     }
   },
   methods: {
+    selectItem (item) {
+      this.$emit('select', item)
+    },
     // 点击
     onShortcutTouchStart: function (e) {
       let anchorIndex = getData(e.target, 'index')
